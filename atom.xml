@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Code Play</title>
+  <icon>https://www.gravatar.com/avatar/37f5042e32043c8bcdfe0a7b75ed5267</icon>
+  
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2022-03-10T14:30:01.385Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>南懿烨曦</name>
+    <email>869083577@qq.com</email>
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>最长无重复子序列</title>
+    <link href="http://example.com/2022/03/10/%E6%9C%80%E9%95%BF%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%90%E5%BA%8F%E5%88%97/"/>
+    <id>http://example.com/2022/03/10/%E6%9C%80%E9%95%BF%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%90%E5%BA%8F%E5%88%97/</id>
+    <published>2022-03-10T13:52:18.000Z</published>
+    <updated>2022-03-10T14:30:01.385Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="pre"><a href="#pre" class="headerlink" title="pre"></a>pre</h1><pre><code>这是我的第一个算法题记录，以后都会以这种形式记录下来</code></pre><p>刷力扣其实是我很早之前就想做的了，大一的时候有段时间有这样的兴致，但也只是刷了几道题就没坚持了，以前也有遇到过那种很有趣的题，可惜没有记录，现在回去再做一次又感觉不值了。所以现在我尽量把那些有意思的题记录一下，也算是当做自己的一种积累吧。</p><p>这次突然开始刷力扣也算因为，哈哈哈，马上要笔试了，临时抱佛脚而已，做这道题也花了我一个小时，刚开始是思路有了，奈何没有正确的方法去实现，真正笔试的时候时间早过了。。。</p><hr><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><strong>无重复字符的最长子串</strong><br>给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。</p><p>示例 1:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: s = &quot;abcabcbb&quot;</span><br><span class="line">输出: 3 </span><br><span class="line">解释: 因为无重复字符的最长子串是 &quot;abc&quot;，所以其长度为 3。</span><br></pre></td></tr></table></figure><p>示例 2:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">输入: s = &quot;bbbbb&quot;</span><br><span class="line">输出: 1</span><br><span class="line">解释: 因为无重复字符的最长子串是 &quot;b&quot;，所以其长度为 1。</span><br></pre></td></tr></table></figure><p>示例 3:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: s = &quot;pwwkew&quot;</span><br><span class="line">输出: 3</span><br><span class="line">解释: 因为无重复字符的最长子串是 &quot;wke&quot;，所以其长度为 3。</span><br><span class="line">     请注意，你的答案必须是 子串 的长度，&quot;pwke&quot; 是一个子序列，不是子串。</span><br></pre></td></tr></table></figure><p>提示：</p><ul><li>0 &lt;= s.length &lt;= 5 * 104</li><li>s 由英文字母、数字、符号和空格组成</li></ul><hr><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>最开始想到的是暴力解，但是肯定是不给过的，果断放弃<br>在给字符编号的时候发现，可以将相同字符的指标记录下来，然后按照1，2，3，4….这样的顺序来取字符，如果遇到相同的字符就将其替换掉，并去除之前的数</p><p>比如：abcabcbb<br>a的指标有</p><ul><li>a:0,3</li><li>b:1,4,6,7</li><li>c:2,5</li></ul><p>接着开始从最开始编号</p><table><thead><tr><th align="left">0</th><th align="center">1</th><th align="right">2</th></tr></thead><tbody><tr><td align="left">a</td><td align="center">b</td><td align="right">c</td></tr></tbody></table><p>编到3的时候发现重复,此时去除第一组键值对接着往下排以此类推，直到最后一个元素</p><table><thead><tr><th align="left"><del>0</del></th><th align="center">1</th><th align="right">2</th><th align="right">3</th></tr></thead><tbody><tr><td align="left"><del>a</del></td><td align="center">b</td><td align="right">c</td><td align="right">a</td></tr></tbody></table><table><thead><tr><th align="left"><del>0</del></th><th align="center"><del>1</del></th><th align="right">2</th><th align="right">3</th><th align="right">4</th></tr></thead><tbody><tr><td align="left"><del>a</del></td><td align="center"><del>b</del></td><td align="right">c</td><td align="right">a</td><td align="right">b</td></tr><tr><td align="left">……</td><td align="center"></td><td align="right"></td><td align="right"></td><td align="right"></td></tr></tbody></table><p>太巧了，这正是一个可排序的哈希表可以解决的问题，但不幸的是，Java自带的LinkedHashMap没有删除首元素这个方法，寄！<br>或许它是有的但是我不会用，更寄！<br>所以我就自己写了一个类似linkedhashmap但是带删除首元素的方法</p><hr><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Node</span>&#123;</span><br><span class="line">        <span class="type">char</span> ch;</span><br><span class="line">        <span class="type">int</span> index;</span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">Node</span><span class="params">(<span class="type">char</span> ch,<span class="type">int</span> index)</span>&#123;</span><br><span class="line">            <span class="built_in">this</span>.ch = ch;</span><br><span class="line">            <span class="built_in">this</span>.index = index;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">lengthOfLongestSubstring</span><span class="params">(String s)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">max</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        LinkedList&lt;Node&gt; linkedList = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">        HashMap&lt;Character,Node&gt; hashMap = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">            <span class="type">char</span> <span class="variable">ch</span> <span class="operator">=</span> s.charAt(i);</span><br><span class="line">            <span class="type">Node</span> <span class="variable">node</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>(ch,i);</span><br><span class="line">            <span class="comment">//如果该字符出现过</span></span><br><span class="line">            <span class="keyword">if</span> (hashMap.get(ch) != <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (linkedList.size() &gt; max) &#123;</span><br><span class="line">                    max = linkedList.size();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//删掉重复值及其之前的值</span></span><br><span class="line">                <span class="keyword">while</span> (linkedList.getFirst().index&lt;hashMap.get(ch).index)&#123;</span><br><span class="line">                    hashMap.remove(linkedList.removeFirst().ch);</span><br><span class="line">                &#125;</span><br><span class="line">                hashMap.remove(linkedList.removeFirst().ch);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//将这个元素添加至链表和哈希表中</span></span><br><span class="line">            linkedList.addLast(node);</span><br><span class="line">            hashMap.put(ch,node);</span><br><span class="line">            <span class="keyword">if</span> (linkedList.size()&gt;max)&#123;</span><br><span class="line">                max = linkedList.size();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>做是做出来了，但是结果不太行，用时只超过了30%，之后再看看优化吧，但估计是不会再更新了</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;pre&quot;&gt;&lt;a href=&quot;#pre&quot; class=&quot;headerlink&quot; title=&quot;pre&quot;&gt;&lt;/a&gt;pre&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;这是我的第一个算法题记录，以后都会以这种形式记录下来
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;刷力扣其实是我很早之前就想做</summary>
+      
+    
+    
+    
+    
+    <category term="算法题" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>知识梳理</title>
+    <link href="http://example.com/2022/03/10/%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/"/>
+    <id>http://example.com/2022/03/10/%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/</id>
+    <published>2022-03-10T08:50:22.000Z</published>
+    <updated>2022-03-10T14:33:58.253Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="pre"><a href="#pre" class="headerlink" title="pre"></a>pre</h1><p>这次知识梳理是为了应对面试的，但是我想的话这之后也有很大的用处，可以检测一下自己的知识面，所以应该会经常更新，我说的是应该。。。</p><hr><h1 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h1><h2 id="数组和链表"><a href="#数组和链表" class="headerlink" title="数组和链表"></a>数组和链表</h2><p>数组查询时比较快，插入和删除比较慢<br>链表查询时比较慢，插入删除比较快<br> <strong>原因:</strong><br>  数组的存储空间是连在一起的方便查询，删除或插入很可能会影响操作点之后的所有数<br>  链表的存储空间是分散的，查询的时候必须从第一个开始，一个一个往下查，所以很慢，删除和插入只用找到那个点位进行操作就ok，不会影响点位之后的数</p><h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><h1 id="hashMap"><a href="#hashMap" class="headerlink" title="hashMap"></a>hashMap</h1><p>最常用的哈希表了，通过键值来访问值，一个hashMap中不允许有相同的键值，如果后续再put进一个hashMap中已经记录了的键值对，那么将会更新这个键值对，而不是新增。hashMap没有排序功能<br>hashMap的查询速度为O(1) </p><h1 id="linkedHashMap"><a href="#linkedHashMap" class="headerlink" title="linkedHashMap"></a>linkedHashMap</h1>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;pre&quot;&gt;&lt;a href=&quot;#pre&quot; class=&quot;headerlink&quot; title=&quot;pre&quot;&gt;&lt;/a&gt;pre&lt;/h1&gt;&lt;p&gt;这次知识梳理是为了应对面试的，但是我想的话这之后也有很大的用处，可以检测一下自己的知识面，所以应该会经常更新，我说的是应该。。。&lt;/</summary>
+      
+    
+    
+    
+    
+    <category term="整理" scheme="http://example.com/tags/%E6%95%B4%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>终于开始了我的个人博客</title>
+    <link href="http://example.com/2022/03/10/%E7%BB%88%E4%BA%8E%E5%BC%80%E5%A7%8B%E4%BA%86%E6%88%91%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://example.com/2022/03/10/%E7%BB%88%E4%BA%8E%E5%BC%80%E5%A7%8B%E4%BA%86%E6%88%91%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</id>
+    <published>2022-03-10T08:05:01.000Z</published>
+    <updated>2022-03-10T13:59:45.353Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="关于我为什么要做个人网站"><a href="#关于我为什么要做个人网站" class="headerlink" title="关于我为什么要做个人网站"></a>关于我为什么要做个人网站</h2><p>之前是一直在csdn上面进行博客记录，社区型的，大家都一样，<strong>没有个性</strong>的那种，在年级的大佬群里面看到各个大佬都有自己的个人网站，而且看起来<strong>非常养眼</strong>，多少有点羡慕。说实话，在csdn上面都没有记录自己学习经历的欲望。在蓝杰的时候老师总是让我们写博客，我一直觉得这是一种作业，多少感觉有点浪费时间。直到现在，我开始准备找实习，准备写简历，准备回顾之前的知识的时候，<strong>哦豁！之前学的东西好多都模糊了，很多都没有记录，这时我才感觉到博客记录的重要性，寄！</strong> 不过还好现在再开始应该还来得及，毕竟现在才大二。</p><hr><h2 id="将来的打算"><a href="#将来的打算" class="headerlink" title="将来的打算"></a>将来的打算</h2><p>目前是打算将技术性的东西或者一些学习上的感想记录在个人网站上，如果有项目的话再将项目传到github上，然后在网站上附上链接，这样子</p><hr><h2 id="网站完善中"><a href="#网站完善中" class="headerlink" title="网站完善中"></a>网站完善中</h2><p>今天就简单把框架搭建了一下，具体的细节打算之后有时间再弄，现在是很多东西都没有加上去，只能先将就用着了，反正现在也就我一个人看，13号字节笔试，14号阿里笔试。。。实在是没有时间耗了，学校还有课程，花旗杯有个项目，微信小程序+springboot还要学<br>大概就先这样吧</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;关于我为什么要做个人网站&quot;&gt;&lt;a href=&quot;#关于我为什么要做个人网站&quot; class=&quot;headerlink&quot; title=&quot;关于我为什么要做个人网站&quot;&gt;&lt;/a&gt;关于我为什么要做个人网站&lt;/h2&gt;&lt;p&gt;之前是一直在csdn上面进行博客记录，社区型的，大家都一样，</summary>
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="http://example.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+</feed>
