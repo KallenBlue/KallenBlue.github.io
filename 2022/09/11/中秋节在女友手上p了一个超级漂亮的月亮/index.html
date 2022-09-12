@@ -175,8 +175,8 @@
   }
 }
 
-if ('Livere' === 'Livere' || !true) {
-  if (true) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+if ('Livere' === 'Livere' || !false) {
+  if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
   else loadLivere()
 }
 else {
@@ -208,47 +208,31 @@ else {
   }
 }
 
-if ('Livere' === 'Disqus' || !true) {
-  if (true) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+if ('Livere' === 'Disqus' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
   else loadDisqus()
 } else {
   function loadOtherComment () {
     loadDisqus()
   }
 }
-</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="I,LOVE,YOU" data-fontsize="15px" data-random="false" async="async"></script><script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0ab5a663.js","daovoice")
-</script><script>var isChatBtn = true
-daovoice('init', {
-  app_id: '0ab5a663',},{
-  launcher: { 
-     disableLauncherIcon: isChatBtn // 悬浮 ICON 是否显示
-  },
-});
-daovoice('update');
-
-if (isChatBtn) {
-  var chatBtnFn = () => {
-    var chatBtn = document.getElementById("chat_btn")
-    chatBtn.addEventListener("click", function(){
-      daovoice('show')
-    });
-  }
-  chatBtnFn()
+</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="I,LOVE,YOU" data-fontsize="15px" data-random="false" async="async"></script><script src="//code.tidio.co/lvwsl5yorrlxergsbml1bxzfxmcqmojl.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
 } else {
-  if (true) {
-    function chatBtnHide () {
-      daovoice('update', {},{
-        launcher: { 
-        disableLauncherIcon: true // 悬浮 ICON 是否显示
-        },
-      });
-    }
-    function chatBtnShow () {
-      daovoice('update', {},{
-        launcher: { 
-        disableLauncherIcon: false // 悬浮 ICON 是否显示
-        },
-      });
-    }
-  }
-}</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
