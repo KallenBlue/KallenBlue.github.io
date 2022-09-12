@@ -144,13 +144,6 @@
   </url>
   
   <url>
-    <loc>https://kallenblue.github.io/tags/ps/</loc>
-    <lastmod>2022-09-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://kallenblue.github.io/tags/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2022-09-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -159,6 +152,13 @@
   
   <url>
     <loc>https://kallenblue.github.io/tags/%E9%9A%8F%E7%AC%94/</loc>
+    <lastmod>2022-09-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kallenblue.github.io/tags/ps/</loc>
     <lastmod>2022-09-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
