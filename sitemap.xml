@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://kallenblue.github.io/2022/09/29/Spring-Bean%E7%9A%84%E5%8F%82%E6%95%B0%E6%B3%A8%E5%85%A5/</loc>
+    
+    <lastmod>2022-09-29</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kallenblue.github.io/2022/09/29/Spring-IoC%E3%80%81DI%E3%80%81Bean/</loc>
     
     <lastmod>2022-09-29</lastmod>
