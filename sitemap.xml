@@ -173,13 +173,6 @@
 
   
   <url>
-    <loc>https://kallenblue.github.io/tags/IoC-Bean/</loc>
-    <lastmod>2022-09-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://kallenblue.github.io/tags/%E6%B9%96%E5%8D%97%E5%A4%A7%E5%AD%A6/</loc>
     <lastmod>2022-09-29</lastmod>
     <changefreq>weekly</changefreq>
@@ -223,6 +216,20 @@
   
   <url>
     <loc>https://kallenblue.github.io/tags/%E5%AD%90%E5%BA%8F%E5%88%97/</loc>
+    <lastmod>2022-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kallenblue.github.io/tags/Ioc/</loc>
+    <lastmod>2022-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kallenblue.github.io/tags/Bean/</loc>
     <lastmod>2022-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
