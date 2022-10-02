@@ -1,0 +1,270 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Spring-事务管理 | Code Play</title><meta name="author" content="南懿烨曦,869083577@qq.com"><meta name="copyright" content="南懿烨曦"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="事务简介 事务作用：在数据层保障一系列的数据库操作同成功同失败  通过平台事务管理器来保障  1234public interface PlatformTransactionManager&amp;#123;    void commit(TransactionStatus status) throws TransactionException;    void rollback(TransactionS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring-事务管理">
+<meta property="og:url" content="https://kallenblue.github.io/2022/10/02/Spring/Spring-%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="Code Play">
+<meta property="og:description" content="事务简介 事务作用：在数据层保障一系列的数据库操作同成功同失败  通过平台事务管理器来保障  1234public interface PlatformTransactionManager&amp;#123;    void commit(TransactionStatus status) throws TransactionException;    void rollback(TransactionS">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-ceb77253-93f0-4559-a375-815102654932/5ae2ef31-b6ff-4af7-a03a-8530fbd38aff.png">
+<meta property="article:published_time" content="2022-10-02T12:47:53.000Z">
+<meta property="article:modified_time" content="2022-10-02T14:12:31.562Z">
+<meta property="article:author" content="南懿烨曦">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-ceb77253-93f0-4559-a375-815102654932/5ae2ef31-b6ff-4af7-a03a-8530fbd38aff.png"><link rel="shortcut icon" href="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-ceb77253-93f0-4559-a375-815102654932/3c412e9d-72fd-461f-89ea-b46d7303b054.png"><link rel="canonical" href="https://kallenblue.github.io/2022/10/02/Spring/Spring-%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 南懿烨曦","link":"链接: ","source":"来源: Code Play","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'mediumZoom',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Spring-事务管理',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-02 22:12:31'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="Code Play" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-ceb77253-93f0-4559-a375-815102654932/79aa9224-5aab-479d-86a1-de377b1b3f41.jpg" data-lazy-src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-ceb77253-93f0-4559-a375-815102654932/56de10fa-7fcf-450c-b8bb-cf46d0633c3f.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">14</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://vkceyugu.cdn.bspapp.com/VKCEYUGU-ceb77253-93f0-4559-a375-815102654932/5ae2ef31-b6ff-4af7-a03a-8530fbd38aff.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Code Play</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Spring-事务管理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-02T12:47:53.000Z" title="发表于 2022-10-02 20:47:53">2022-10-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-02T14:12:31.562Z" title="更新于 2022-10-02 22:12:31">2022-10-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Spring/">Spring</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Spring-事务管理"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="事务简介"><a href="#事务简介" class="headerlink" title="事务简介"></a>事务简介</h1><ul>
+<li><p>事务作用：在数据层保障一系列的数据库操作同成功同失败</p>
+<blockquote>
+<p>通过平台事务管理器来保障</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">PlatformTransactionManager</span>&#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">commit</span><span class="params">(TransactionStatus status)</span> <span class="keyword">throws</span> TransactionException;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">rollback</span><span class="params">(TransactionStatus status)</span><span class="keyword">throws</span> TransactionException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="事务案例：模拟银行账户间转账业务"><a href="#事务案例：模拟银行账户间转账业务" class="headerlink" title="事务案例：模拟银行账户间转账业务"></a>事务案例：模拟银行账户间转账业务</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><blockquote>
+<p>实现两个账户之间转账操作，A账户转钱，B账户加钱</p>
+</blockquote>
+</li>
+<li><p>数据层提供基础操作，指定账户转钱（outMoney），指定账户加钱（inMoney）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Update(&quot;update account set property=property + #&#123;money&#125; where account_id = #&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="type">boolean</span> <span class="title function_">inMoney</span><span class="params">(<span class="meta">@Param(&quot;id&quot;)</span> <span class="type">int</span> id,<span class="meta">@Param(&quot;money&quot;)</span> Double money)</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Update(&quot;update account set property=property-#&#123;money&#125; where account_id = #&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="type">boolean</span> <span class="title function_">outMoney</span><span class="params">(<span class="meta">@Param(&quot;id&quot;)</span> <span class="type">int</span> id,<span class="meta">@Param(&quot;money&quot;)</span> Double money)</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>业务层提供转账操作（transferAccounts），调用转钱和加钱的操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">transferAccounts</span><span class="params">(<span class="type">int</span> fromID, <span class="type">int</span> toID, <span class="type">double</span> money)</span> &#123;</span><br><span class="line">  <span class="type">boolean</span> <span class="variable">f1</span> <span class="operator">=</span> accountDao.inMoney(toID,money);</span><br><span class="line">  <span class="type">boolean</span> <span class="variable">f2</span> <span class="operator">=</span> accountDao.outMoney(fromID,money);</span><br><span class="line">  <span class="keyword">return</span> f1&amp;&amp;f2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>提供两个账号和操作金额执行转账操作</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AccountApp</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">ApplicationContext</span> <span class="variable">applicationContext</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AnnotationConfigApplicationContext</span>(SpringConfig.class);</span><br><span class="line">    <span class="type">AccountService</span> <span class="variable">accountService</span> <span class="operator">=</span> applicationContext.getBean(AccountService.class);</span><br><span class="line"></span><br><span class="line">    accountService.transferAccounts(<span class="number">1</span>,<span class="number">2</span>,<span class="number">200</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="存在的问题"><a href="#存在的问题" class="headerlink" title="存在的问题"></a>存在的问题</h3><ul>
+<li>程序正常执行时，转账正常</li>
+<li>程序出现异常后，转账失败，但是异常之前的操作成功，异常之后的操作失败，整体业务失败，也就是会出现只转出了钱没收到钱或者只收到没转出<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">transferAccounts</span><span class="params">(<span class="type">int</span> fromID, <span class="type">int</span> toID, <span class="type">double</span> money)</span> &#123;</span><br><span class="line">  <span class="type">boolean</span> <span class="variable">f1</span> <span class="operator">=</span> accountDao.inMoney(toID,money);</span><br><span class="line">  <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span>/<span class="number">0</span>;</span><br><span class="line">  <span class="type">boolean</span> <span class="variable">f2</span> <span class="operator">=</span> accountDao.outMoney(fromID,money);</span><br><span class="line">  <span class="keyword">return</span> f1&amp;&amp;f2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>模拟异常</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">1</span>/<span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="Spring的事务管理"><a href="#Spring的事务管理" class="headerlink" title="Spring的事务管理"></a>Spring的事务管理</h2></li>
+<li>在业务层接口上添加Spring事务管理@Transactional</li>
+</ul>
+<blockquote>
+<p>Spring注解式事务通常添加在业务层接口中而不会添加到业务层实现类中，降低耦合<br>注解式事务可以添加到业务方法上表示当前方法开启事务，也可以添加到接口类上表示当前接口所有方法开启事务</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="type">boolean</span> <span class="title function_">transferAccounts</span><span class="params">(<span class="type">int</span> fromID,<span class="type">int</span> toID,<span class="type">double</span> money)</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>设置事务管理器</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> PlatformTransactionManager <span class="title function_">transactionManager</span><span class="params">(DataSource dataSource)</span>&#123;</span><br><span class="line">  <span class="type">DataSourceTransactionManager</span> <span class="variable">transactionManager</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DataSourceTransactionManager</span>();</span><br><span class="line">  transactionManager.setDataSource(dataSource);</span><br><span class="line">  <span class="keyword">return</span> transactionManager;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>事务管理器要根据实现技术进行选择<br>MyBatis框架使用的是JDBC事务</p>
+</blockquote>
+<ul>
+<li>开启注解式事务驱动</li>
+</ul>
+<blockquote>
+<p>在配置类中添加</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableTransactionManagement</span></span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:869083577@qq.com">南懿烨曦</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://kallenblue.github.io/2022/10/02/Spring/Spring-%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/">https://kallenblue.github.io/2022/10/02/Spring/Spring-事务管理/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://kallenblue.github.io" target="_blank">Code Play</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-ceb77253-93f0-4559-a375-815102654932/5ae2ef31-b6ff-4af7-a03a-8530fbd38aff.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-ceb77253-93f0-4559-a375-815102654932/fd2dd427-0dbb-475e-bde9-698997c1cce8.jpg" target="_blank"><img class="post-qr-code-img" src= "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-ceb77253-93f0-4559-a375-815102654932/79aa9224-5aab-479d-86a1-de377b1b3f41.jpg" data-lazy-src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-ceb77253-93f0-4559-a375-815102654932/fd2dd427-0dbb-475e-bde9-698997c1cce8.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-ceb77253-93f0-4559-a375-815102654932/db4b8536-6225-4c68-bd78-1039d24093aa.jpg" target="_blank"><img class="post-qr-code-img" src= "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-ceb77253-93f0-4559-a375-815102654932/79aa9224-5aab-479d-86a1-de377b1b3f41.jpg" data-lazy-src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-ceb77253-93f0-4559-a375-815102654932/db4b8536-6225-4c68-bd78-1039d24093aa.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/10/01/Spring/Spring-AOP/"><img class="next-cover" src= "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-ceb77253-93f0-4559-a375-815102654932/79aa9224-5aab-479d-86a1-de377b1b3f41.jpg" data-lazy-src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-ceb77253-93f0-4559-a375-815102654932/7892a0d2-5ec5-4a79-8108-d3a5a193a985.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Spring-AOP</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Livere</span><span class="switch-btn"></span><span class="second-comment">Disqus</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81NzI0MS8zMzcwNQ=="></div></div><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">事务简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E6%A1%88%E4%BE%8B%EF%BC%9A%E6%A8%A1%E6%8B%9F%E9%93%B6%E8%A1%8C%E8%B4%A6%E6%88%B7%E9%97%B4%E8%BD%AC%E8%B4%A6%E4%B8%9A%E5%8A%A1"><span class="toc-number">1.1.</span> <span class="toc-text">事务案例：模拟银行账户间转账业务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82"><span class="toc-number">1.1.1.</span> <span class="toc-text">需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.1.2.</span> <span class="toc-text">存在的问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring%E7%9A%84%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">Spring的事务管理</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('/image/footer-bg.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 By 南懿烨曦</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">wow~你居然翻到了页底~恭喜你发现宝藏🎁</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script>function loadLivere () {
+  if (typeof LivereTower === 'object') {
+    window.LivereTower.init()
+  }
+  else {
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  }
+}
+
+if ('Livere' === 'Livere' || !false) {
+  if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+  else loadLivere()
+}
+else {
+  function loadOtherComment () {
+    loadLivere()
+  }
+}</script><script>function loadDisqus () {
+  var disqus_config = function () {
+    this.page.url = 'https://kallenblue.github.io/2022/10/02/Spring/Spring-%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/'
+    this.page.identifier = '2022/10/02/Spring/Spring-事务管理/'
+    this.page.title = 'Spring-事务管理'
+  };
+
+  window.disqusReset = () => {
+    DISQUS.reset({
+      reload: true,
+      config: disqus_config
+    })
+  }
+
+  if (window.DISQUS) disqusReset()
+  else {
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://httpskallenbluegithubio.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  }
+}
+
+if ('Livere' === 'Disqus' || !false) {
+  if (false) btf.loadComment(document.getElementById('disqus_thread'), loadDisqus)
+  else loadDisqus()
+} else {
+  function loadOtherComment () {
+    loadDisqus()
+  }
+}
+</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="Hiraeth,Ephemeral,Limerence,Sonorous,Aurora,Epoch,Epiphany,Petrichor" data-fontsize="15px" data-random="true" async="async"></script><script src="//code.tidio.co/lvwsl5yorrlxergsbml1bxzfxmcqmojl.js" async="async"></script><script>function onTidioChatApiReady() {
+  window.tidioChatApi.hide();
+  window.tidioChatApi.on("close", function() {
+    window.tidioChatApi.hide();
+  });
+}
+if (window.tidioChatApi) {
+  window.tidioChatApi.on("ready", onTidioChatApiReady);
+} else {
+  document.addEventListener("tidioChat-ready", onTidioChatApiReady);
+}
+
+var chatBtnFn = () => {
+  document.getElementById("chat_btn").addEventListener("click", function(){
+    window.tidioChatApi.show();
+    window.tidioChatApi.open();
+  });
+}
+chatBtnFn()
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
