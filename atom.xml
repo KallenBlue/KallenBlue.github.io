@@ -6,7 +6,7 @@
   <link href="https://kallenblue.github.io/atom.xml" rel="self"/>
   
   <link href="https://kallenblue.github.io/"/>
-  <updated>2022-10-04T06:25:44.619Z</updated>
+  <updated>2022-10-04T16:00:06.434Z</updated>
   <id>https://kallenblue.github.io/</id>
   
   <author>
@@ -17,22 +17,51 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>SpringMVC-REST</title>
+    <link href="https://kallenblue.github.io/2022/10/04/SpringMVC/SpringMVC-REST/"/>
+    <id>https://kallenblue.github.io/2022/10/04/SpringMVC/SpringMVC-REST/</id>
+    <published>2022-10-04T14:37:04.000Z</published>
+    <updated>2022-10-04T16:00:06.434Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="REST简介"><a href="#REST简介" class="headerlink" title="REST简介"></a>REST简介</h1><ul><li>REST(Representational State Transfer)，表现形式状态转换<ul><li>传统风格资源描述形式<ul><li><a href="http://localhost/user/getById?id=1">http://localhost/user/getById?id=1</a></li><li><a href="http://localhost/user/saveUser">http://localhost/user/saveUser</a></li></ul></li><li>REST风格<ul><li><a href="http://localhost/user/1">http://localhost/user/1</a></li><li><a href="http://localhost/user">http://localhost/user</a></li></ul></li></ul></li><li>优点：<ul><li>隐藏资源的访问行为，无法通过地址得知对资源是何种操作</li><li>书写简化</li></ul></li></ul><h2 id="REST风格简介"><a href="#REST风格简介" class="headerlink" title="REST风格简介"></a>REST风格简介</h2><ul><li><p>按照REST风格访问资源时使用行为动作区分对资源进行了何种操作</p><ul><li><a href="http://localhost/users">http://localhost/users</a> &nbsp;&nbsp;&nbsp;查询全部用户信息    GET（查询）</li><li><a href="http://localhost/users/1">http://localhost/users/1</a> 查询指定用户信息    GET（查询）</li><li><a href="http://localhost/users">http://localhost/users</a> &nbsp;&nbsp;&nbsp;添加用户信息 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;POST（新增/保存）</li><li><a href="http://localhost/users">http://localhost/users</a> &nbsp;&nbsp;&nbsp;修改用户信息 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PUT（修改/更新）</li><li><a href="http://localhost/users/1">http://localhost/users/1</a>    删除用户信息 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DELETE（删除）</li></ul></li><li><p>根据REST风格对资源进行访问称为<strong>RESTful</strong></p></li></ul><h2 id="REST风格案例"><a href="#REST风格案例" class="headerlink" title="REST风格案例"></a>REST风格案例</h2><ul><li>设定http请求动作</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(method = RequestMethod.POST)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">save</span><span class="params">()</span>&#123;</span><br><span class="line">  System.out.println(<span class="string">&quot;user save...&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&quot;&#123;&#x27;data&#x27;:&#x27;success&#x27;&#125;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>设定请求参数（路径变量）</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/&#123;id&#125;&quot;, method = RequestMethod.DELETE)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">delete</span><span class="params">(<span class="meta">@PathVariable</span> <span class="type">int</span> id)</span>&#123;</span><br><span class="line">  System.out.println(<span class="string">&quot;user delete...&quot;</span>+id);</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&quot;&#123;&#x27;data&#x27;:&#x27;success&#x27;&#125;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>@RequestBody @RequestParam @PathVariable<blockquote><p>@RequestParam 用于接收url地址传参或表单传参（非json格式时使用）</p></blockquote></li></ul><blockquote><p>@RequestBody用于接收json数据（应用最广泛）</p></blockquote><blockquote><p>@PathVariable用于接收路径参数，使用{参数名称}描述路径参数（参数较少时使用）</p></blockquote><h1 id="简化REST"><a href="#简化REST" class="headerlink" title="简化REST"></a>简化REST</h1><ul><li>@RestController替代@Controller @ResponseBody<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@Controller</span></span><br><span class="line"><span class="comment">//@ResponseBody</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li>@GetMapping @PostMapping @PutMapping @DeleteMapping替换普通的@RequestMapping</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  @RequestMapping(method = RequestMethod.POST)</span></span><br><span class="line">  <span class="meta">@PostMapping</span></span><br><span class="line">  <span class="keyword">public</span> String <span class="title function_">save</span><span class="params">()</span>&#123;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  @RequestMapping(value = &quot;/&#123;id&#125;&quot;, method = RequestMethod.DELETE)</span></span><br><span class="line">  <span class="meta">@DeleteMapping(&quot;/&#123;id&#125;&quot;)</span></span><br><span class="line">  <span class="keyword">public</span> String <span class="title function_">delete</span><span class="params">(<span class="meta">@PathVariable</span> <span class="type">int</span> id)</span>&#123;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure><h1 id="补充：对静态页面的放行"><a href="#补充：对静态页面的放行" class="headerlink" title="补充：对静态页面的放行"></a>补充：对静态页面的放行</h1><blockquote><p>新建一个配置类</p></blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SpringMvcSupport</span> <span class="keyword">extends</span> <span class="title class_">WebMvcConfigurationSupport</span> &#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">addResourceHandlers</span><span class="params">(ResourceHandlerRegistry registry)</span> &#123;</span><br><span class="line">    registry.addResourceHandler(<span class="string">&quot;/pages/**&quot;</span>).addResourceLocations(<span class="string">&quot;/pages/&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;REST简介&quot;&gt;&lt;a href=&quot;#REST简介&quot; class=&quot;headerlink&quot; title=&quot;REST简介&quot;&gt;&lt;/a&gt;REST简介&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;REST(Representational State Transfer)，表现形式状态转换&lt;u</summary>
+      
+    
+    
+    
+    <category term="SpringMVC" scheme="https://kallenblue.github.io/categories/SpringMVC/"/>
+    
+    
+    <category term="REST" scheme="https://kallenblue.github.io/tags/REST/"/>
+    
+  </entry>
+  
+  <entry>
     <title>idea快捷键记录</title>
     <link href="https://kallenblue.github.io/2022/10/04/%E5%A4%87%E5%BF%98/idea%E5%BF%AB%E6%8D%B7%E9%94%AE%E8%AE%B0%E5%BD%95/"/>
     <id>https://kallenblue.github.io/2022/10/04/%E5%A4%87%E5%BF%98/idea%E5%BF%AB%E6%8D%B7%E9%94%AE%E8%AE%B0%E5%BD%95/</id>
     <published>2022-10-04T06:14:21.000Z</published>
-    <updated>2022-10-04T06:25:44.619Z</updated>
+    <updated>2022-10-04T14:28:30.466Z</updated>
     
-    <content type="html"><![CDATA[<ul><li>查找类</li><li><em>ctrl+n</em>*</li><li>查看类的层次结构</li><li><em>ctrl+h</em>*</li></ul>]]></content>
+    <content type="html"><![CDATA[<ul><li>查找类<blockquote><p>ctrl+n</p></blockquote></li><li>查看类的层次结构<blockquote><p>ctrl+h</p></blockquote></li></ul>]]></content>
     
     
       
       
     <summary type="html">&lt;ul&gt;
-&lt;li&gt;查找类&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;ctrl+n&lt;/em&gt;*&lt;/li&gt;
-&lt;li&gt;查看类的层次结构&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;ctrl+h&lt;/em&gt;*&lt;/li&gt;
+&lt;li&gt;查找类&lt;blockquote&gt;
+&lt;p&gt;ctrl+n&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;查看类的层次结构&lt;blockquote&gt;
+&lt;p&gt;ctrl+h&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 </summary>
       
