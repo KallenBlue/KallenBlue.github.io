@@ -6,7 +6,7 @@
   <link href="https://kallenblue.github.io/atom.xml" rel="self"/>
   
   <link href="https://kallenblue.github.io/"/>
-  <updated>2022-10-16T13:40:07.960Z</updated>
+  <updated>2022-10-16T15:20:05.732Z</updated>
   <id>https://kallenblue.github.io/</id>
   
   <author>
@@ -21,8 +21,16 @@
     <link href="https://kallenblue.github.io/2022/10/16/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1-Nacos%E9%85%8D%E7%BD%AE%E5%8E%9F%E7%90%86/"/>
     <id>https://kallenblue.github.io/2022/10/16/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BE%AE%E6%9C%8D%E5%8A%A1-Nacos%E9%85%8D%E7%BD%AE%E5%8E%9F%E7%90%86/</id>
     <published>2022-10-16T13:39:07.000Z</published>
-    <updated>2022-10-16T13:40:07.960Z</updated>
+    <updated>2022-10-16T15:20:05.732Z</updated>
     
+    <content type="html"><![CDATA[<h1 id="Nacos实现配置管理"><a href="#Nacos实现配置管理" class="headerlink" title="Nacos实现配置管理"></a>Nacos实现配置管理</h1><ul><li><p>配置管理原理<br><img src="https://img-blog.csdnimg.cn/14fdc99f14194aa2b23ea354a8eb2dd6.png"></p></li><li><p>配置过程<br><img src="https://img-blog.csdnimg.cn/5ba551988503426bbde0b1f4bbab30ce.png"><br><img src="https://img-blog.csdnimg.cn/f80003109f884e4ea5b9a72d1fa39cd1.png"></p><h1 id="微服务配置拉取"><a href="#微服务配置拉取" class="headerlink" title="微服务配置拉取"></a>微服务配置拉取</h1><h2 id="配置获取步骤"><a href="#配置获取步骤" class="headerlink" title="配置获取步骤"></a>配置获取步骤</h2><p><img src="https://img-blog.csdnimg.cn/f7b070c0ad6d4ef49f5b8b87958e9660.png"></p></li><li><p>1.引入Nacos的配置管理客户端依赖</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--nacos的配置管理依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-config<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></li><li><p>2.在resource目录添加一个bootstrap.yml文件，这个文件是引导文件，优先级高于application.yml</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">userservice</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span> <span class="comment"># 环境</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="string">nacos:8848</span> <span class="comment"># nacos地址</span></span><br><span class="line">      <span class="attr">config:</span></span><br><span class="line">        <span class="attr">file-extension:</span> <span class="string">yaml</span> <span class="comment"># 文件后缀名</span></span><br></pre></td></tr></table></figure><h1 id="配置热更新"><a href="#配置热更新" class="headerlink" title="配置热更新"></a>配置热更新</h1><p><img src="https://img-blog.csdnimg.cn/bfd904f84f4840f9b608dbddd218d995.png"><br><img src="https://img-blog.csdnimg.cn/1c25ff68b8b94656a73740768fc7058b.png"><br><img src="https://img-blog.csdnimg.cn/54f67e45ce324a31a5b5724afc22bbc7.png"></p><h1 id="多环境配置共享"><a href="#多环境配置共享" class="headerlink" title="多环境配置共享"></a>多环境配置共享</h1><p><img src="https://img-blog.csdnimg.cn/e2dc4cbe9f3c4fdfbb07990e3642e27d.png"></p></li><li><p>多环境配置优先级<br><img src="https://img-blog.csdnimg.cn/1372486e741b410d96fe6c265aae0f67.png"></p></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Nacos实现配置管理&quot;&gt;&lt;a href=&quot;#Nacos实现配置管理&quot; class=&quot;headerlink&quot; title=&quot;Nacos实现配置管理&quot;&gt;&lt;/a&gt;Nacos实现配置管理&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;配置管理原理&lt;br&gt;&lt;img src=&quot;https</summary>
+      
     
     
     
