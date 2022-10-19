@@ -535,4 +535,11 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://kallenblue.github.io/categories/Pytorch/</loc>
+    <lastmod>2022-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 </urlset>
