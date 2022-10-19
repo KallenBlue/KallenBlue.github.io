@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://kallenblue.github.io/2022/10/19/Pytorch/Pytorch-Tensor%E5%9F%BA%E7%A1%80/</loc>
+    
+    <lastmod>2022-10-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://kallenblue.github.io/2022/10/19/%E5%81%A5%E5%BA%B7%E5%B0%8F%E8%B4%B4%E5%A3%AB/%E5%81%A5%E5%BA%B7%E5%B0%8F%E8%B4%B4%E5%A3%AB-%E9%98%B2%E4%B9%85%E5%9D%90/</loc>
     
     <lastmod>2022-10-19</lastmod>
