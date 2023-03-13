@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s1.ax1x.com/2023/03/13/ppQmsn1.jpg">
 <meta property="article:published_time" content="2022-10-17T08:04:12.000Z">
-<meta property="article:modified_time" content="2023-03-13T04:16:03.060Z">
+<meta property="article:modified_time" content="2023-03-13T05:01:22.369Z">
 <meta property="article:author" content="南懿烨曦">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://s1.ax1x.com/2023/03/13/ppQmsn1.jpg"><link rel="shortcut icon" href="https://s1.ax1x.com/2023/03/13/ppQm9YD.png"><link rel="canonical" href="https://kallenblue.github.io/2022/10/17/Nginx/Nginx%E5%9F%BA%E7%A1%80/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
@@ -52,7 +52,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2023-03-13 12:16:03'
+  postUpdate: '2023-03-13 13:01:22'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -142,7 +142,7 @@
     }
     detectApple()
     })(window)</script><meta name="generator" content="Hexo 5.4.1"><link rel="alternate" href="/atom.xml" title="Code Play" type="application/atom+xml">
-</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://s1.ax1x.com/2023/03/13/ppQmllj.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s1.ax1x.com/2023/03/13/ppQmsn1.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Code Play</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Nginx基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-17T08:04:12.000Z" title="发表于 2022-10-17 16:04:12">2022-10-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-13T04:16:03.060Z" title="更新于 2023-03-13 12:16:03">2023-03-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Nginx/">Nginx</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Nginx基础"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://s1.ax1x.com/2023/03/13/ppQmllj.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">10</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://s1.ax1x.com/2023/03/13/ppQmsn1.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Code Play</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/Gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Nginx基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-17T08:04:12.000Z" title="发表于 2022-10-17 16:04:12">2022-10-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-13T05:01:22.369Z" title="更新于 2023-03-13 13:01:22">2023-03-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Nginx/">Nginx</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Nginx基础"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
 <p>学习的过程中发现有现成的笔记，所以就不再自己写了</p>
 </blockquote>
 <h2 id="Nginx简介"><a href="#Nginx简介" class="headerlink" title="Nginx简介"></a>Nginx简介</h2><h3 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h3><p>Nginx（“engine x”）一个具有高性能的【HTTP】和【反向代理】的【WEB服务器】，同时也是一个【POP3/SMTP/IMAP代理服务器】，是由伊戈尔·赛索耶夫(俄罗斯人)使用C语言编写的，Nginx的第一个版本是2004年10月4号发布的0.1.0版本。另外值得一提的是伊戈尔·赛索耶夫将Nginx的源码进行了开源，这也为Nginx的发展提供了良好的保障。<br><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://s1.ax1x.com/2023/03/13/ppQnSun.png" alt="在这里插入图片描述"></p>
@@ -228,18 +228,18 @@
 <p><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://s1.ax1x.com/2023/03/13/ppQnE34.png" alt="在这里插入图片描述"></p>
 <h3 id="获取Nginx源码"><a href="#获取Nginx源码" class="headerlink" title="获取Nginx源码"></a>获取Nginx源码</h3><p><a target="_blank" rel="noopener" href="http://nginx.org/download/">http://nginx.org/download/</a></p>
 <p>打开上述网站，就可以查看到Nginx的所有版本，选中自己需要的版本进行下载。下载我们可以直接在windows上下载然后上传到服务器，也可以直接从服务器上下载，这个时候就需要准备一台服务器。</p>
-<p><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://img-blog.csdnimg.cn/5b9a267e83ff4a05bb2cae0ddaf8c5ba.png" alt="在这里插入图片描述"></p>
+<p><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://z4a.net/images/2023/03/13/5b9a267e83ff4a05bb2cae0ddaf8c5ba.png" alt="在这里插入图片描述"></p>
 <h3 id="准备服务器系统"><a href="#准备服务器系统" class="headerlink" title="准备服务器系统"></a>准备服务器系统</h3><p>环境准备</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">VMware WorkStation</span><br><span class="line">Centos7</span><br><span class="line">MobaXterm</span><br><span class="line">	xsheel,SecureCRT</span><br><span class="line">网络</span><br></pre></td></tr></table></figure>
 
 <p>(1)确认centos的内核</p>
 <p>准备一个内核为2.6及以上版本的操作系统，因为linux2.6及以上内核才支持epoll,而Nginx需要解决高并发压力问题是需要用到epoll，所以我们需要有这样的版本要求。</p>
 <p>我们可以使用<code>uname -a</code>命令来查询linux的内核版本。</p>
-<p><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://img-blog.csdnimg.cn/4579d240547a4df596868fe72ca62928.png" alt="在这里插入图片描述"></p>
+<p><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://z4a.net/images/2023/03/13/4579d240547a4df596868fe72ca62928.png" alt="在这里插入图片描述"></p>
 <p>(2)确保centos能联网</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping www.baidu.com</span><br></pre></td></tr></table></figure>
 
-<p><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://img-blog.csdnimg.cn/82c54ad7bba9424fa4e58f833f13d0ea.png" alt="在这里插入图片描述"></p>
+<p><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://z4a.net/images/2023/03/13/82c54ad7bba9424fa4e58f833f13d0ea.png" alt="在这里插入图片描述"></p>
 <p>(3)确认关闭防火墙</p>
 <p>这一项的要求仅针对于那些对linux系统的防火墙设置规则不太清楚的，建议大家把防火墙都关闭掉，因为我们此次课程主要的内容是对Nginx的学习，把防火墙关闭掉，可以省掉后续Nginx学习过程中遇到的诸多问题。</p>
 <p>关闭的方式有如下两种：</p>
@@ -247,13 +247,13 @@
 
 <p>（4）确认停用selinux</p>
 <p>selinux(security-enhanced linux),美国安全局对于强制访问控制的实现，在linux2.6内核以后的版本中，selinux已经成功内核中的一部分。可以说selinux是linux史上最杰出的新安全子系统之一。虽然有了selinux，我们的系统会更安全，但是对于我们的学习Nginx的历程中，会多很多设置，所以这块建议大家将selinux进行关闭。</p>
-<p><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://img-blog.csdnimg.cn/8f2431de204947bab7cc5de1d69f641e.png" alt="在这里插入图片描述"></p>
+<p><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://z4a.net/images/2023/03/13/8f2431de204947bab7cc5de1d69f641e.png" alt="在这里插入图片描述"></p>
 <p>sestatus查看状态</p>
-<p><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://img-blog.csdnimg.cn/eaa69c26076d4ca292e7a4315620d52b.png" alt="在这里插入图片描述"></p>
+<p><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://z4a.net/images/2023/03/13/eaa69c26076d4ca292e7a4315620d52b.png" alt="在这里插入图片描述"></p>
 <p>如果查看不是disabled状态，我们可以通过修改配置文件来进行设置,修改SELINUX=disabled，然后重启下系统即可生效。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/selinux/config</span><br></pre></td></tr></table></figure>
 
-<p><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://img-blog.csdnimg.cn/a485806000214e239fd018e64853b7ba.png" alt="在这里插入图片描述"></p>
+<p><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://z4a.net/images/2023/03/13/a485806000214e239fd018e64853b7ba.png" alt="在这里插入图片描述"></p>
 <h3 id="Nginx安装方式介绍"><a href="#Nginx安装方式介绍" class="headerlink" title="Nginx安装方式介绍"></a>Nginx安装方式介绍</h3><p>Nginx的安装方式有两种分别是:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">通过Nginx源码</span><br><span class="line">	通过Nginx源码简单安装 (1)</span><br><span class="line">	通过Nginx源码复杂安装 (3)</span><br><span class="line">通过yum安装 (2)</span><br></pre></td></tr></table></figure>
 
@@ -303,14 +303,14 @@
 <p>（3）查看是否安装成功</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum list | grep nginx</span><br></pre></td></tr></table></figure>
 
-<p><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://img-blog.csdnimg.cn/7d0d7f50f6154cb4ad8873ed7f3521a1.png" alt="在这里插入图片描述"></p>
+<p><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://z4a.net/images/2023/03/13/7d0d7f50f6154cb4ad8873ed7f3521a1.png" alt="在这里插入图片描述"></p>
 <p>（4）使用yum进行安装</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yun install -y nginx</span><br></pre></td></tr></table></figure>
 
 <p>（5）查看nginx的安装位置</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whereis nginx</span><br></pre></td></tr></table></figure>
 
-<p><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://img-blog.csdnimg.cn/a347aaf129ff49d1bd8518aad8caef04.png" alt="在这里插入图片描述"></p>
+<p><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://z4a.net/images/2023/03/13/a347aaf129ff49d1bd8518aad8caef04.png" alt="在这里插入图片描述"></p>
 <p>（6）启动测试</p>
 <h4 id="方案三-ubuntu下安装"><a href="#方案三-ubuntu下安装" class="headerlink" title="方案三: ubuntu下安装"></a>方案三: ubuntu下安装</h4><p>官方网站上有各个linux发行版的<a target="_blank" rel="noopener" href="https://nginx.org/en/linux_packages.html#Ubuntu">安装教程</a><br><strong>Ubuntu</strong><br>安装必备组件：</p>
 <blockquote>
@@ -326,7 +326,7 @@
 </blockquote>
 <p>输出应包含完整的指纹，如下所示573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62:</p>
 <blockquote>
-<p>pub   rsa2048 2011-08-19 [SC] [expires: 2024-06-14]       573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 uid                      nginx signing key <a href="mailto:&#x73;&#x69;&#103;&#110;&#105;&#x6e;&#x67;&#45;&#107;&#101;&#121;&#64;&#110;&#x67;&#x69;&#x6e;&#120;&#46;&#x63;&#x6f;&#109;">&#x73;&#x69;&#103;&#110;&#105;&#x6e;&#x67;&#45;&#107;&#101;&#121;&#64;&#110;&#x67;&#x69;&#x6e;&#120;&#46;&#x63;&#x6f;&#109;</a> </p>
+<p>pub   rsa2048 2011-08-19 [SC] [expires: 2024-06-14]       573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 uid                      nginx signing key <a href="mailto:&#115;&#105;&#x67;&#110;&#105;&#110;&#103;&#x2d;&#x6b;&#x65;&#121;&#64;&#x6e;&#x67;&#x69;&#110;&#x78;&#x2e;&#99;&#111;&#109;">&#115;&#105;&#x67;&#110;&#105;&#110;&#103;&#x2d;&#x6b;&#x65;&#121;&#64;&#x6e;&#x67;&#x69;&#110;&#x78;&#x2e;&#99;&#111;&#109;</a> </p>
 </blockquote>
 <p>如果指纹不同，请删除该文件。<br>要为稳定的nginx软件包设置apt存储库，请运行以下命令：</p>
 <blockquote>
@@ -346,9 +346,9 @@
 </blockquote>
 <h4 id="源码简单安装和yum安装的差异："><a href="#源码简单安装和yum安装的差异：" class="headerlink" title="源码简单安装和yum安装的差异："></a>源码简单安装和yum安装的差异：</h4><p>这里先介绍一个命令: <code>./nginx -V</code>,通过该命令可以查看到所安装Nginx的版本及相关配置信息。</p>
 <p>简单安装</p>
-<p><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://img-blog.csdnimg.cn/536246c7b0b14e2b829f3427331902a0.png" alt="在这里插入图片描述"></p>
+<p><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://z4a.net/images/2023/03/13/536246c7b0b14e2b829f3427331902a0.png" alt="在这里插入图片描述"></p>
 <p>yum安装</p>
-<p><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://img-blog.csdnimg.cn/e555308fb24f403ebe28bd2e6123d72a.png" alt="在这里插入图片描述"></p>
+<p><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://z4a.net/images/2023/03/13/e555308fb24f403ebe28bd2e6123d72a.png" alt="在这里插入图片描述"></p>
 <h5 id="解压Nginx目录"><a href="#解压Nginx目录" class="headerlink" title="解压Nginx目录"></a>解压Nginx目录</h5><p>执行<code>tar -zxvf nginx-1.16.1.tar.gz</code>对下载的资源进行解压缩，进入压缩后的目录，可以看到如下结构</p>
 <p><img src= "https://s1.ax1x.com/2023/03/13/ppQmBc9.jpg" data-lazy-src="https://img-blog.csdnimg.cn/f469df49ced843daa6bd1457b435d1ed.png" alt="在这里插入图片描述"></p>
 <p>内容解释：</p>
